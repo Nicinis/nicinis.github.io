@@ -1,0 +1,45 @@
+﻿<h3>Registration</h3>
+<div>
+    <label>Username:</label>
+    <InputText @bind-Value="@username"></InputText>
+    <label>Email:</label>
+    <InputText @bind-Value="@email"></InputText>
+    <label>Password:</label>
+    <InputText @bind-Value="@password"></InputText>
+    <label>Confirm Password:</label>
+    <InputText @bind-Value="@Cpassword"></InputText>
+    <label>Date of Birth:</label>
+    <DateInput TValue="DateOnly" @bind-Value="@date1" Placeholder="Enter Date" />
+
+    <Button @onclick="() => Register()">Register</Button>
+    @if (isRegistered)
+    {
+        <div class="alert alert-success mt-3">
+            Registration successful!
+        </div>
+    }
+</div>
+@code {
+    private string username;
+    private string email;
+    private string password;
+    private string Cpassword;
+    private string DateOfBirth;
+    private DateOnly date1 = DateOnly.FromDateTime(DateTime.Now);
+    private bool isRegistered;
+
+    private void Register()
+    {
+        isRegistered = false;
+        if (username != string.Empty)
+        {
+            if (email != string.Empty)
+            {
+                if (password == Cpassword)
+                {
+                    isRegistered = true;
+                }
+            }
+        }
+    }
+}

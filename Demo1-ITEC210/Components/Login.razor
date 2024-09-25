@@ -1,0 +1,34 @@
+﻿<h3>Login</h3>
+
+<div>
+    <label>Username or Email:</label>
+    <InputText @bind-Value="@username"></InputText>
+    <label>Password:</label>
+    <InputText @bind-Value="@password"></InputText>
+    <Button @onclick="() => Logon()">Log in</Button>
+    @if (LogOnSuccessful)
+    {
+        <div class="alert alert-success mt-3">
+            Log in successful!
+        </div>
+    }
+</div>
+
+@code {
+    private string username;
+    private string password;
+    private bool LogOnSuccessful;
+
+    private void Logon()
+    {
+        LogOnSuccessful = false;
+        if (username == "admin" || username == "admin@github.io")
+        {
+            if (password == "WOPR")
+            {
+                LogOnSuccessful = true;
+            }
+        }
+
+    }
+}
