@@ -1,0 +1,21 @@
+﻿<h3>CalculatorComponent</h3>
+<p>This component will help convert between clecius to fahrenheit</p>
+
+<div class="mb-3">
+    <label class="form-label">Amount in Celcius</label>
+    <NumberInput TValue="int" @bind-Value="@amount" Placeholder="Enter amount" />
+</div>
+<div class="mb-3">Entered Amount: @ConvertCtoF(amount)</div>
+
+<hr />
+<FeetToCentimeters />
+
+@code {
+    private int amount;
+
+    private decimal ConvertCtoF(decimal celcius)
+    {
+        return (celcius * 9 / 5) + 32;
+    }
+
+}
