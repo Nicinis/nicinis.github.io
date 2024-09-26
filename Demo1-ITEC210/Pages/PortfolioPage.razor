@@ -1,0 +1,19 @@
+﻿@page "/Portfolio"
+
+<PageTitle>Portfolio</PageTitle>
+
+<h3>Portfolio</h3>
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<hr />
+<a href="/bmr-calculator">Calculate your Basal Metabolic Rate.</a>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}

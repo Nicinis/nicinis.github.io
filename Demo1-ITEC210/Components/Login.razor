@@ -5,11 +5,11 @@
     <InputText @bind-Value="@username"></InputText>
     <label>Password:</label>
     <InputText @bind-Value="@password"></InputText>
-    <Button @onclick="() => Logon()">Log in</Button>
+    <Button Style="border: solid 1px; margin: 10px" @onclick="() => Logon()">Log in</Button>
     @if (LogOnSuccessful)
     {
         <div class="alert alert-success mt-3">
-            Log in successful!
+            You are logged in.
         </div>
     }
 </div>

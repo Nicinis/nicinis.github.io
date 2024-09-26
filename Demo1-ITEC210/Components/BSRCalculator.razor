@@ -1,0 +1,83 @@
+﻿<h1>Understanding BMR:</h1>
+<p>
+    The Basal Metabolic Rate (BMR) provides a baseline for the number of calories your body needs to maintain essential physiological functions at rest.
+    It does not account for physical activity or factors like digestion.
+    <br />
+    <br />
+    The key functions supported by BMR include:
+    <br />
+    <ol>
+        <li><strong>Breathing:</strong>Maintaining the respiratory process that supplies oxygen to the body and removes carbon dioxide.</li>
+        <li><strong>Circulating Blood:</strong> Ensuring that blood circulates throughout the body to deliver nutrients and oxygen to cells and remove waste products.</li>
+        <li><strong>Regulating Body Temperature:</strong> Maintaining a stable internal temperature necessary for proper cellular function.</li>
+        <li><strong>Cell Growth and Repair:</strong> Supporting the processes of growth, maintenance, and repair of cells in the body.</li>
+    </ol>
+</p>
+
+<div>
+    <div>
+        <label style="margin: 5px">Enter Weight (kg):</label>
+        <NumberInput style="margin: 5px" TValue="double" @bind-Value="@weight" />
+    </div>
+    <div>
+        <label style="margin: 5px">Enter Height (cm):</label>
+        <NumberInput style="margin: 5px" TValue="double" @bind-Value="@height" />
+    </div>
+    <div>
+        <label style="margin: 5px">Enter Age:</label>
+        <NumberInput style="margin: 5px" TValue="int" @bind-Value="@age" />
+    </div>
+    <div>
+        <label style="margin: 5px">Sex:</label>
+        <select style="margin: 5px" @bind="@sex">
+            <option value="" disabled>Select sex</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+    </div>
+    <Button Style="border: solid 1px; margin: 5px;" @onclick="CalculateBMR">Calculate BMR</Button>
+    <div style="margin: 5px">BMR: @bmrResult kcal</div>
+    @if (CanCalculate == 2)
+    {
+        <div style="color: red">Can not calculate BMR.</div>
+    }
+</div>
+
+@code {
+    private double weight;
+    private double height;
+    private int age;
+    private string sex = "";
+    private double bmrResult;
+    private int s;
+    private int CanCalculate = 0; //tried to use a bool but the bool initlized as false. So I used a int state 
+
+    private void CalculateBMR()
+    {
+        if (weight >= 0)
+        {
+            if (height >= 0)
+            {
+                if (age >= 0)
+                {
+                    switch (sex)
+                    {
+                        case "male":
+                            s = 5;
+                            CanCalculate = 1;
+                            break;
+                        case "female":
+                            s = -161;
+                            CanCalculate = 1;
+                            break;
+                        default:
+                            s = 0;
+                            CanCalculate = 2;
+                            break;
+                    }
+                    bmrResult = (10 * weight) + (6.25 * height) - (5 * age) + s;
+                }
+            }
+        }
+    }
+}

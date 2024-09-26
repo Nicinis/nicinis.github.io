@@ -9,13 +9,15 @@
     <label>Confirm Password:</label>
     <InputText @bind-Value="@Cpassword"></InputText>
     <label>Date of Birth:</label>
-    <DateInput TValue="DateOnly" @bind-Value="@date1" Placeholder="Enter Date" />
+    <div style="display: inline-block;">
+        <DateInput TValue="DateOnly" @bind-Value="@date1" Placeholder="Enter Date" Style="max-width: 150px" />
+    </div>
 
-    <Button @onclick="() => Register()">Register</Button>
+    <Button Style="border: solid 1px; margin: 10px" @onclick="() => Register()">Register</Button>
     @if (isRegistered)
     {
         <div class="alert alert-success mt-3">
-            Registration successful!
+            You are registered.
         </div>
     }
 </div>
@@ -31,9 +33,9 @@
     private void Register()
     {
         isRegistered = false;
-        if (username != string.Empty)
+        if (username != null)
         {
-            if (email != string.Empty)
+            if (email != null)
             {
                 if (password == Cpassword)
                 {
@@ -42,4 +44,4 @@
             }
         }
     }
-}
+    }

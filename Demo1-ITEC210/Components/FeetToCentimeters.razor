@@ -1,4 +1,4 @@
-﻿<h3>FeetToCentimeters</h3>
+﻿<h3>Feet To Centimeters Calculator</h3>
 
 <div class="mb-3">
     <label class="form-label">Amount (feet)</label>
@@ -7,9 +7,9 @@
     <label class="form-label">Amount (inches)</label>
     <NumberInput TValue="int" @bind-Value="@inches" Placeholder="Enter amount" />
 
-    <Button @onclick="() => FeetandInchestoCM(feet,inches)">Calculate</Button>
+    <Button Style="border: solid 1px" @onclick="() => FeetandInchestoCM(feet,inches)">Calculate</Button>
 </div>
-<div class="mb-3">Entered Amount: @centimeters</div>
+<div class="mb-3">Centimeters: @centimeters</div>
 
 @code {
     private int feet;
@@ -21,7 +21,7 @@
         decimal ret = 0;
         ret = feet * 12;
         ret = ret + inches;
-        ret = inches / 2.54m;
+        ret = ret * 2.54m;
         centimeters = ret;
         return ret;
     }
